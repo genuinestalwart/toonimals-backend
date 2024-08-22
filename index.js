@@ -36,6 +36,11 @@ const run = async () => {
 			res.send(result);
 		});
 
+		app.post("/categories", async (req, res) => {
+			const result = await categoriesColl.insertOne(req.body);
+			res.send(result);
+		});
+
 		app.get("/animals", async (req, res) => {
 			const { category } = req.query;
 
@@ -44,6 +49,11 @@ const run = async () => {
 				: {};
 
 			const result = await animalsColl.find(query).toArray();
+			res.send(result);
+		});
+
+		app.post("/animals", async (req, res) => {
+			const result = await animalsColl.insertOne(req.body);
 			res.send(result);
 		});
 	} finally {
